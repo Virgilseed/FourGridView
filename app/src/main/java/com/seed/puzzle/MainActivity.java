@@ -38,6 +38,11 @@ public class MainActivity extends AppCompatActivity {
                 Glide.with(MainActivity.this).load(url).placeholder(new ColorDrawable(Color.parseColor("#f5f5f5")))
                         .error(R.mipmap.ic_launcher).into(imageView);
             }
+
+            @Override
+            public void onItemImageClick(Context context, ImageView itemView, int position, List<String> mImgDataList) {
+
+            }
         });
         mOne.setImagesData(list1);
         mTwo.setAdapter(new NineGridImageViewAdapter<String>() {
@@ -45,6 +50,11 @@ public class MainActivity extends AppCompatActivity {
             protected void onDisplayImage(Context context, ImageView imageView, String url) {
                 Glide.with(MainActivity.this).load(url).placeholder(new ColorDrawable(Color.parseColor("#f5f5f5")))
                         .error(R.mipmap.ic_launcher).into(imageView);
+            }
+
+            @Override
+            public void onItemImageClick(Context context, ImageView itemView, int position, List<String> mImgDataList) {
+
             }
         });
         mTwo.setImagesData(list2);
@@ -54,6 +64,11 @@ public class MainActivity extends AppCompatActivity {
                 Glide.with(MainActivity.this).load(url).placeholder(new ColorDrawable(Color.parseColor("#f5f5f5")))
                         .error(R.mipmap.ic_launcher).into(imageView);
             }
+
+            @Override
+            public void onItemImageClick(Context context, ImageView itemView, int position, List<String> mImgDataList) {
+
+            }
         });
         mThree.setImagesData(list3);
         mFour.setAdapter(new NineGridImageViewAdapter<String>() {
@@ -62,6 +77,11 @@ public class MainActivity extends AppCompatActivity {
                 Glide.with(MainActivity.this).load(url).placeholder(new ColorDrawable(Color.parseColor("#f5f5f5")))
                         .error(R.mipmap.ic_launcher).into(imageView);
             }
+
+            @Override
+            public void onItemImageClick(Context context, ImageView itemView, int position, List<String> mImgDataList) {
+
+            }
         });
         mFour.setImagesData(list4);
         mFive.setAdapter(new NineGridImageViewAdapter<String>() {
@@ -69,6 +89,11 @@ public class MainActivity extends AppCompatActivity {
             protected void onDisplayImage(Context context, ImageView imageView, String url) {
                 Glide.with(MainActivity.this).load(url).placeholder(new ColorDrawable(Color.parseColor("#f5f5f5")))
                         .error(R.mipmap.ic_launcher).into(imageView);
+            }
+
+            @Override
+            public void onItemImageClick(Context context, ImageView itemView, int position, List<String> mImgDataList) {
+
             }
         });
         mFive.setImagesData(list5);

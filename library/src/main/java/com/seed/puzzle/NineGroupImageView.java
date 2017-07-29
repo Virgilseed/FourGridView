@@ -3,6 +3,7 @@ package com.seed.puzzle;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
@@ -117,8 +118,10 @@ public class NineGroupImageView<T> extends ViewGroup {
                 else
                     childrenView.layout(mImageWidthSize * (i - 2) + mGap * (i - 2), mImageWidthSize + mGap, mImageWidthSize * (i - 1) + mGap * (i - 2), mImageWidthSize * 2 + mGap);
             }
-            if (mAdapter != null) {
+            if (mAdapter != null && childrenView.getDrawable() == null) {
+//                if (childrenView.)
                 mAdapter.onDisplayImage(getContext(), childrenView, mImgDataList.get(i));
+//                itemView.setTag(lists.get(i));
             }
         }
     }
@@ -128,7 +131,7 @@ public class NineGroupImageView<T> extends ViewGroup {
      *
      * @param lists 图片数据集合
      */
-    public void setImagesData(List lists) {
+    public void setImagesData(List<T> lists) {
         if (lists == null || lists.isEmpty()) {
             this.setVisibility(GONE);
             return;
@@ -143,34 +146,55 @@ public class NineGroupImageView<T> extends ViewGroup {
         int[] gridParam = calculatefourParam(lists.size());
         mRowCount = gridParam[0];
         mColumnCount = gridParam[1];
-        if (mImgDataList == null) {
-            int i = 0;
-            while (i < lists.size()) {
-                if (showOnlyFour && i < 4) {
-                    ImageView iv = getImageView(i);
-                    if (iv == null) {
-                        return;
+
+        int numbers = 4;
+        if (lists.size() < 4)
+            numbers = lists.size();
+        removeAllViews();
+        for (int i = 0; i < numbers; i++) {
+            final ImageView itemView = mAdapter.generateImageView(getContext());;
+            if (mAdapter != null) {
+                mAdapter.onDisplayImage(getContext(), itemView, lists.get(i));
+                final int finalI = i;
+                itemView.setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mAdapter.onItemImageClick(getContext(), itemView, finalI, mImgDataList);
                     }
-                    addView(iv, generateDefaultLayoutParams());
-                }
-                i++;
+                });
+
             }
-        } else {
-            int oldViewCount = mImgDataList.size();
-            int newViewCount = lists.size();
-            if (oldViewCount > newViewCount) {
-                removeViews(newViewCount, oldViewCount - newViewCount);
-            } else if (oldViewCount < newViewCount && 4 > oldViewCount) {
-                //@// TODO: 2017/7/23  仅限 4个view 
-                for (int i = oldViewCount; i < 4 - oldViewCount; i++) {
-                    ImageView iv = getImageView(i);
-                    if (iv == null) {
-                        return;
-                    }
-                    addView(iv, generateDefaultLayoutParams());
-                }
-            }
+            addView(itemView, generateDefaultLayoutParams());
         }
+
+//        if (mImgDataList == null) {
+//            int i = 0;
+//            while (i < lists.size()) {
+//                if (showOnlyFour && i < 4) {
+//                    ImageView iv = getImageView(i);
+//                    if (iv == null) {
+//                        return;
+//                    }
+//                    addView(iv, generateDefaultLayoutParams());
+//                }
+//                i++;
+//            }
+//        } else {
+//            int oldViewCount = mImgDataList.size();
+//            int newViewCount = lists.size();
+//            if (oldViewCount > newViewCount) {
+//                removeViews(newViewCount, oldViewCount - newViewCount);
+//            } else if (oldViewCount < newViewCount && 4 > oldViewCount) {
+//                //@// TODO: 2017/7/23  仅限 4个view
+//                for (int i = oldViewCount; i < 4 - oldViewCount; i++) {
+//                    ImageView iv = getImageView(i);
+//                    if (iv == null) {
+//                        return;
+//                    }
+//                    addView(iv, generateDefaultLayoutParams());
+//                }
+//            }
+//        }
         mImgDataList = lists;
         requestLayout();
     }
