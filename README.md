@@ -1,8 +1,10 @@
 # FourGridView
 仿微信个人朋友圈多图组合（4宫格）
+## 示例
+![](https://github.com/Virgilseed/FourGridView/blob/master/test.gif)
 
 ## 使用
-#### 1.1布局
+#### 2.1布局
         <com.seed.puzzle.NineGroupImageView
             android:layout_below="@id/item_content"
             android:layout_toRightOf="@id/item_image"
@@ -13,7 +15,7 @@
             android:id="@+id/item_group">
 
           </com.seed.puzzle.NineGroupImageView>
-#### 1.2使用
+#### 2.2使用
       nineGroupImageView.setAdapter(new NineGridImageViewAdapter<String>() {
             @Override
             protected void onDisplayImage(Context context, ImageView imageView, String url) {
