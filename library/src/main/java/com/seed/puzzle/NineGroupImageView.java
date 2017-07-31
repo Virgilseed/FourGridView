@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Gray on 2017/7/23.
+ * Created by Seed on 2017/7/23.
  */
 
 public class NineGroupImageView<T> extends ViewGroup {
