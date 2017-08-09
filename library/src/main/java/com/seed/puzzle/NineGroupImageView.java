@@ -119,9 +119,7 @@ public class NineGroupImageView<T> extends ViewGroup {
                     childrenView.layout(mImageWidthSize * (i - 2) + mGap * (i - 2), mImageWidthSize + mGap, mImageWidthSize * (i - 1) + mGap * (i - 2), mImageWidthSize * 2 + mGap);
             }
             if (mAdapter != null && childrenView.getDrawable() == null) {
-//                if (childrenView.)
                 mAdapter.onDisplayImage(getContext(), childrenView, mImgDataList.get(i));
-//                itemView.setTag(lists.get(i));
             }
         }
     }
